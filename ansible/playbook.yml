@@ -14,8 +14,6 @@
   vars:
     app_dir: /opt/gta6-data
     app_user: gta6
-    git_ref: "{{ git_ref | default('main') }}"
-    gta6_domain: "{{ gta6_domain | default('') }}"
   tasks:
     - name: Install system packages
       ansible.builtin.apt:
@@ -63,7 +61,7 @@
       ansible.builtin.git:
         repo: "{{ ('https://x-access-token:' + git_token + '@github.com/crlsmartnruiz/gta6-data.git') if git_token | default('') else 'https://github.com/crlsmartnruiz/gta6-data.git' }}"
         dest: "{{ app_dir }}"
-        version: "{{ git_ref }}"
+        version: "{{ git_ref | default('main') }}"
         force: true
       no_log: true
       notify: Restart gta6-api
