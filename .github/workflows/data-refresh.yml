@@ -53,13 +53,22 @@ jobs:
           git push origin "$BR"
           echo "branch=$BR" >> "$GITHUB_ENV"
 
-      - name: Open and merge PR
+      - name: Open PR and wait for CI, then merge
         if: steps.diff.outputs.changed == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh pr create \
             --title "chore(data): auto-refresh datasets" \
-            --body "Automated scraper run. Data diff attached to the commit. Pipeline: scrape → PR → merge → deploy." \
-            --head "$branch" --base main
-          gh pr merge --squash --delete-branch
+            --body "Automated scraper run. Data diff attached to the commit. Pipeline: scrape → PR → merge → deploy."
+          PR=$(gh pr list --head "$branch" --json number --jq '.[].number')
+          echo "PR #$PR — waiting for required checks (branch protection)"
+          # Wait for checks to be reported (they start async on pull_request)
+          for i in $(seq 1 20); do
+            OUT=$(gh pr checks "$PR" 2>&1 || true)
+            echo "$OUT" | grep -q "no checks reported" || break
+            sleep 15
+          done
+          # Block until every check concludes; exits non-zero if any fails
+          gh pr checks "$PR" --watch --interval 15
+          gh pr merge "$PR" --squash --delete-branch
