@@ -23,7 +23,7 @@ jobs:
       - name: Install uv
         run: curl -LsSf https://astral.sh/uv/install.sh | sh
 
-      - name: Run scrapers (writes into data/gta6.sqlite3)
+      - name: Run scrapers (exports data/*.json)
         # continue-on-error: with stub scrapers (no pinned sources yet) the CLI
         # exits 1; the diff check below simply finds nothing to commit.
         continue-on-error: true
@@ -34,11 +34,13 @@ jobs:
       - name: Check for data changes
         id: diff
         run: |
-          if git diff --quiet -- data/; then
+          # git status (not git diff) so newly created untracked data/*.json
+          # files are detected too, not just modifications to tracked files.
+          if [ -n "$(git status --porcelain -- data/)" ]; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          else
             echo "changed=false" >> "$GITHUB_OUTPUT"
             echo "No data changes."
-          else
-            echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Commit data to a refresh branch

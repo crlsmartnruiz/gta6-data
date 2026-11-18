@@ -1,3 +1,4 @@
+import json
 from pathlib import Path
 from typing import Iterator
 
@@ -60,3 +61,52 @@ def test_requests_share_one_connection(client: TestClient, monkeypatch):
         assert r.status_code == 200
     assert len(seen) == 2
     assert seen[0] is seen[1] is api.app.state.conn
+
+
+@pytest.fixture()
+def json_client(tmp_path: Path, monkeypatch) -> Iterator[TestClient]:
+    # Committed state of truth: a data/ dir with per-dataset JSON files. The
+    # lifespan must rebuild the runtime DB from them before serving.
+    data_dir = tmp_path / "data"
+    data_dir.mkdir()
+    vehicles = [
+        Vehicle(id="alpha", name="Alpha", source="json"),
+        Vehicle(id="beta", name="Beta", source="json"),
+    ]
+    (data_dir / "vehicles.json").write_text(
+        json.dumps([v.model_dump(mode="json") for v in vehicles])
+    )
+    monkeypatch.setenv("GTA6_DB", str(data_dir / "gta6.sqlite3"))
+    with TestClient(api.app) as c:
+        yield c
+
+
+def test_api_serves_records_from_json_dir(json_client: TestClient):
+    r = json_client.get("/api/v1/vehicles")
+    body = r.json()
+    assert r.status_code == 200
+    assert body["count"] == 2
+    assert {rec["id"] for rec in body["records"]} == {"alpha", "beta"}
+
+
+def test_json_rebuild_is_idempotent_across_restarts(tmp_path: Path, monkeypatch):
+    # The lifespan clears + re-imports each dataset on every startup, so the
+    # record count stays at the JSON file's size across restarts (never
+    # doubles). Sequential (NOT nested) contexts: nested lifespans on one app
+    # instance would overwrite app.state.conn and trip thread affinity at
+    # teardown.
+    data_dir = tmp_path / "data"
+    data_dir.mkdir()
+    vehicles = [
+        Vehicle(id="alpha", name="Alpha", source="json"),
+        Vehicle(id="beta", name="Beta", source="json"),
+    ]
+    (data_dir / "vehicles.json").write_text(
+        json.dumps([v.model_dump(mode="json") for v in vehicles])
+    )
+    monkeypatch.setenv("GTA6_DB", str(data_dir / "gta6.sqlite3"))
+    for _ in range(2):
+        with TestClient(api.app) as c:
+            r = c.get("/api/v1/vehicles")
+            assert r.status_code == 200
+            assert r.json()["count"] == 2

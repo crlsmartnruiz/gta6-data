@@ -16,9 +16,23 @@ async def lifespan(app: FastAPI):
     # One shared sqlite connection for the whole process: opened once at
     # startup, closed at shutdown. Async endpoints keep every access on the
     # event-loop thread, so no check_same_thread handling is needed.
-    app.state.conn = db.connect(Path(os.environ.get("GTA6_DB", db.DEFAULT_DB)))
-    yield
-    app.state.conn.close()
+    db_path = Path(os.environ.get("GTA6_DB", db.DEFAULT_DB))
+    data_dir = db_path.parent  # committed per-dataset JSON files live here
+    app.state.conn = db.connect(db_path)
+    try:
+        # Rebuild the runtime DB from the committed data/*.json files before
+        # serving. Idempotent: clear each dataset's rows, then re-import, so a
+        # restart always reflects the latest JSON state.
+        for dataset in db.DATASETS:
+            json_path = data_dir / f"{dataset}.json"
+            if not json_path.exists():
+                continue
+            app.state.conn.execute("DELETE FROM records WHERE dataset = ?", (dataset,))
+            app.state.conn.commit()
+            db.import_json(app.state.conn, json_path, dataset)
+        yield
+    finally:
+        app.state.conn.close()
 
 
 app = FastAPI(
