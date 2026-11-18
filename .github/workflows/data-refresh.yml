@@ -3,7 +3,7 @@ name: data-refresh
 # data, and merge it. The merge triggers `deploy` via workflow_run.
 on:
   schedule:
-    - cron: "7 */6 * * *"   # every 6h; tighten during launch week
+    - cron: "7 * * * *"   # hourly during launch week (Nov 19-22); revert to "7 */6 * * *" after Nov 22 if data volume allows
   workflow_dispatch:
 
 permissions:
@@ -24,12 +24,78 @@ jobs:
         run: curl -LsSf https://astral.sh/uv/install.sh | sh
 
       - name: Run scrapers (exports data/*.json)
-        # continue-on-error: with stub scrapers (no pinned sources yet) the CLI
-        # exits 1; the diff check below simply finds nothing to commit.
-        continue-on-error: true
+        # Per-scraper loop so failures are visible instead of masked by a
+        # blanket continue-on-error. A run where every failing scraper is a
+        # stub (*-stub) is the expected interim stub phase: print a notice
+        # and continue. Any non-stub failure prints the list to the step
+        # summary and exits 1 so the workflow goes red.
         run: |
           uv sync --all-extras
-          uv run python scripts/run_scraper.py --all
+          FAIL_FILE="$RUNNER_TEMP/scraper-failures.txt"
+          : > "$FAIL_FILE"
+          while IFS= read -r scraper; do
+            [ -z "$scraper" ] && continue
+            echo "::group::scraper: $scraper"
+            if uv run python scripts/run_scraper.py --name "$scraper"; then
+              echo "OK: $scraper"
+            else
+              echo "FAILED: $scraper"
+              echo "$scraper" >> "$FAIL_FILE"
+            fi
+            echo "::endgroup::"
+          done < <(uv run python scripts/run_scraper.py --list | awk '{print $1}')
+
+          if [ ! -s "$FAIL_FILE" ]; then
+            echo "All scrapers succeeded."
+            exit 0
+          fi
+
+          only_stubs=true
+          {
+            echo "### Scraper failures"
+            echo ""
+            echo "| scraper | type |"
+            echo "| --- | --- |"
+          } >> "$GITHUB_STEP_SUMMARY"
+          while IFS= read -r scraper; do
+            case "$scraper" in
+              *-stub)
+                echo "| \`$scraper\` | stub (expected in interim phase) |" >> "$GITHUB_STEP_SUMMARY"
+                ;;
+              *)
+                only_stubs=false
+                echo "| \`$scraper\` | **non-stub (unexpected)** |" >> "$GITHUB_STEP_SUMMARY"
+                ;;
+            esac
+          done < "$FAIL_FILE"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+
+          if [ "$only_stubs" = true ]; then
+            echo "NOTICE: every failed scraper is a stub (*-stub). Continuing: interim stub phase."
+            exit 0
+          fi
+
+          echo "Non-stub scraper failures:"
+          cat "$FAIL_FILE"
+          exit 1
+
+      - name: Open issue on scraper failures
+        # Runs even when the scraper step exited non-zero. Issue-creation
+        # failure must never block the pipeline, hence || true.
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          FAIL_FILE="$RUNNER_TEMP/scraper-failures.txt"
+          if [ -s "$FAIL_FILE" ]; then
+            RUN_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+            BODY="Scraper failures in data-refresh run ${{ github.run_id }}:"$'\n'"$RUN_URL"$'\n'"Failed scrapers:"$'\n'"$(while IFS= read -r scraper; do echo "- \`$scraper\`"; done < "$FAIL_FILE")"
+            gh issue create \
+              --title "data-refresh: scraper failures ($(date -u +%Y-%m-%d))" \
+              --body "$BODY" || true
+          else
+            echo "No scraper failures; no issue to open."
+          fi
 
       - name: Check for data changes
         id: diff
