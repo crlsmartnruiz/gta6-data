@@ -23,7 +23,6 @@ src/gta6data/
   scrapers/     Scraper base class (retries, polite UA) + stub scrapers
 scripts/run_scraper.py   CLI: --list / --name X / --all
 tests/         pytest suite (models, db, API)
-deploy/k8s.yaml  Homelab stubs: Deployment + PVC + Service + scraper CronJob
 ansible/         VPS deployment: playbook (systemd + Caddy + ufw), env-driven inventory
 .github/workflows/  ci | data-refresh (scrape → PR → merge) | deploy (Ansible to VPS)
 ```

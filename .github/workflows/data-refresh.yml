@@ -1,0 +1,65 @@
+name: data-refresh
+# Autonomous pipeline step 1: run scrapers in CI, open a PR with any new
+# data, and merge it. The merge triggers `deploy` via workflow_run.
+on:
+  schedule:
+    - cron: "7 */6 * * *"   # every 6h; tighten during launch week
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: data-refresh
+  cancel-in-progress: false
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        run: curl -LsSf https://astral.sh/uv/install.sh | sh
+
+      - name: Run scrapers (writes into data/gta6.sqlite3)
+        # continue-on-error: with stub scrapers (no pinned sources yet) the CLI
+        # exits 1; the diff check below simply finds nothing to commit.
+        continue-on-error: true
+        run: |
+          uv sync --all-extras
+          uv run python scripts/run_scraper.py --all
+
+      - name: Check for data changes
+        id: diff
+        run: |
+          if git diff --quiet -- data/; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "No data changes."
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Commit data to a refresh branch
+        if: steps.diff.outputs.changed == 'true'
+        run: |
+          git config user.name "gta6-data-bot"
+          git config user.email "bot@users.noreply.github.com"
+          BR="data/refresh-$(date +%Y%m%d-%H%M%S)"
+          git checkout -b "$BR"
+          git add data/
+          git commit -m "chore(data): refresh scraped datasets"
+          git push origin "$BR"
+          echo "branch=$BR" >> "$GITHUB_ENV"
+
+      - name: Open and merge PR
+        if: steps.diff.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh pr create \
+            --title "chore(data): auto-refresh datasets" \
+            --body "Automated scraper run. Data diff attached to the commit. Pipeline: scrape → PR → merge → deploy." \
+            --head "$branch" --base main
+          gh pr merge --squash --delete-branch
