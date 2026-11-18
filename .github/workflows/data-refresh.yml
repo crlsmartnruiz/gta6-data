@@ -71,4 +71,8 @@ jobs:
           done
           # Block until every check concludes; exits non-zero if any fails
           gh pr checks "$PR" --watch --interval 15
+          # If main moved since branch creation (strict status checks),
+          # update the branch and wait for the new checks to conclude.
+          gh pr update-branch "$PR" || true
+          gh pr checks "$PR" --watch --interval 15 || true
           gh pr merge "$PR" --squash --delete-branch
