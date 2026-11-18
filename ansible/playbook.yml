@@ -49,11 +49,14 @@
 
     - name: Check out repo at deployed ref
       become_user: "{{ app_user }}"
+      # For private repos the deploy workflow passes a short-lived, read-only
+      # GITHUB_TOKEN (contents:read) as git_token. Public repos don't need it.
       ansible.builtin.git:
-        repo: https://github.com/crlsmartnruiz/gta6-data.git
+        repo: "{{ ('https://x-access-token:' + git_token + '@github.com/crlsmartnruiz/gta6-data.git') if git_token | default('') else 'https://github.com/crlsmartnruiz/gta6-data.git' }}"
         dest: "{{ app_dir }}"
         version: "{{ git_ref }}"
         force: true
+      no_log: true
       notify: Restart gta6-api
 
     - name: Sync virtualenv

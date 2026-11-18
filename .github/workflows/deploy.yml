@@ -66,4 +66,5 @@ jobs:
         run: |
           export ANSIBLE_PRIVATE_KEY_FILE=~/.ssh/gta6_deploy_ed25519
           ansible-playbook ansible/playbook.yml \
-            --extra-vars "git_ref=${GITHUB_SHA}"
+            --extra-vars "git_ref=${GITHUB_SHA}" \
+            --extra-vars "git_token=${{ github.token }}"
