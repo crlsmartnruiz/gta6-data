@@ -48,6 +48,14 @@
       delay: 5
       until: uv_install is succeeded
 
+    - name: Create app directory owned by service user
+      ansible.builtin.file:
+        path: "{{ app_dir }}"
+        state: directory
+        owner: "{{ app_user }}"
+        group: "{{ app_user }}"
+        mode: "0750"
+
     - name: Check out repo at deployed ref
       become_user: "{{ app_user }}"
       # For private repos the deploy workflow passes a short-lived, read-only
