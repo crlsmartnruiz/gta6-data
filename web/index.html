@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>gta6-data — a public record of Leonida</title>
+<meta name="description" content="Community-run structured GTA VI data: vehicles, locations, prices, missions. Every record with its source.">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header>
+  <div class="brand">
+    <h1>gta6-data</h1>
+    <p class="tagline">a public record of Leonida</p>
+  </div>
+  <nav aria-label="Datasets">
+    <a href="#vehicles" data-nav="vehicles">Vehicles <span class="count" data-count="vehicles">—</span></a>
+    <a href="#locations" data-nav="locations">Locations <span class="count" data-count="locations">—</span></a>
+    <a href="#prices" data-nav="prices">Prices <span class="count" data-count="prices">0</span></a>
+    <a href="#missions" data-nav="missions">Missions <span class="count" data-count="missions">0</span></a>
+    <a href="/docs" class="api">API</a>
+  </nav>
+</header>
+
+<main id="app" aria-live="polite">
+  <noscript><p class="error">JavaScript required. Raw data: <a href="/api/v1/vehicles">/api/v1/vehicles</a>, <a href="/api/v1/locations">/api/v1/locations</a>.</p></noscript>
+</main>
+
+<footer>
+  <p>Community-run. Not affiliated with Rockstar Games or Take-Two Interactive. Records sourced from <a href="https://gta6intel.com" rel="noopener">gta6intel.com</a>.</p>
+</footer>
+
+<script src="/app.js"></script>
+</body>
+</html>
