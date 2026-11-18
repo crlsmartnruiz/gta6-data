@@ -1,0 +1,23 @@
+[Unit]
+Description=gta6-data public API (FastAPI/uvicorn)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User={{ app_user }}
+WorkingDirectory={{ app_dir }}
+Environment=GTA6_DB={{ app_dir }}/data/gta6.sqlite3
+ExecStart={{ app_dir }}/.venv/bin/uvicorn gta6data.api:app --host 127.0.0.1 --port 8000
+Restart=always
+RestartSec=3
+
+# Hardening
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths={{ app_dir }}/data
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

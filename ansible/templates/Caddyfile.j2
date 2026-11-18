@@ -1,0 +1,13 @@
+# When gta6_domain is set: real site with automatic Let's Encrypt TLS.
+# When empty: plain HTTP on port 80 (useful before DNS is pointed).
+{% if gta6_domain %}
+{{ gta6_domain }} {
+    reverse_proxy 127.0.0.1:8000
+    encode gzip
+}
+{% else %}
+:80 {
+    reverse_proxy 127.0.0.1:8000
+    encode gzip
+}
+{% endif %}

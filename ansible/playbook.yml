@@ -1,0 +1,110 @@
+---
+# Idempotent playbook: provisions and deploys the gta6-data API on the VPS.
+# Runs on every deploy from GitHub Actions (and locally with VPS_HOST set).
+#
+# Layout on the host:
+#   /opt/gta6-data          repo checkout (service user's home)
+#   /opt/gta6-data/.venv    uv-managed virtualenv
+#   systemd: gta6-api.service (uvicorn on 127.0.0.1:8000)
+#   caddy: reverse proxy 80/443 -> 8000, automatic TLS when gta6_domain is set
+
+- name: Deploy gta6-data API
+  hosts: gta6
+  become: true
+  vars:
+    app_dir: /opt/gta6-data
+    app_user: gta6
+    git_ref: "{{ git_ref | default('main') }}"
+    gta6_domain: "{{ gta6_domain | default('') }}"
+  tasks:
+    - name: Install system packages
+      ansible.builtin.apt:
+        name:
+          - caddy
+          - git
+          - ufw
+        state: present
+        update_cache: true
+        cache_valid_time: 3600
+
+    - name: Create service user
+      ansible.builtin.user:
+        name: "{{ app_user }}"
+        system: true
+        home: "{{ app_dir }}"
+        create_home: true
+        shell: /usr/sbin/nologin
+
+    - name: Install uv
+      ansible.builtin.unarchive:
+        src: "https://github.com/astral-sh/uv/releases/latest/download/uv-x86_64-unknown-linux-gnu.tar.gz"
+        dest: /usr/local/bin
+        remote_src: true
+        mode: "0755"
+        extra_opts: [--strip-components=1, "--wildcards", "*/uv"]
+      register: uv_install
+      retries: 3
+      delay: 5
+      until: uv_install is succeeded
+
+    - name: Check out repo at deployed ref
+      become_user: "{{ app_user }}"
+      ansible.builtin.git:
+        repo: https://github.com/crlsmartnruiz/gta6-data.git
+        dest: "{{ app_dir }}"
+        version: "{{ git_ref }}"
+        force: true
+      notify: Restart gta6-api
+
+    - name: Sync virtualenv
+      become_user: "{{ app_user }}"
+      ansible.builtin.command:
+        cmd: uv sync --all-extras
+        chdir: "{{ app_dir }}"
+      changed_when: false
+      notify: Restart gta6-api
+
+    - name: Install systemd unit
+      ansible.builtin.template:
+        src: gta6-api.service.j2
+        dest: /etc/systemd/system/gta6-api.service
+        mode: "0644"
+      notify:
+        - Reload systemd
+        - Restart gta6-api
+
+    - name: Install Caddyfile
+      ansible.builtin.template:
+        src: Caddyfile.j2
+        dest: /etc/caddy/Caddyfile
+        mode: "0644"
+        validate: "caddy validate --config %s"
+      notify: Reload caddy
+
+    - name: Firewall - allow SSH, HTTP, HTTPS
+      community.general.ufw:
+        rule: allow
+        port: "{{ item }}"
+        proto: tcp
+      loop: ["22", "80", "443"]
+
+    - name: Firewall - enable
+      community.general.ufw:
+        state: enabled
+
+  handlers:
+    - name: Reload systemd
+      ansible.builtin.systemd:
+        daemon_reload: true
+
+    - name: Restart gta6-api
+      ansible.builtin.systemd:
+        name: gta6-api
+        state: restarted
+        enabled: true
+
+    - name: Reload caddy
+      ansible.builtin.systemd:
+        name: caddy
+        state: restarted
+        enabled: true
