@@ -22,6 +22,7 @@ class Vehicle(BaseModel):
     manufacturer: str | None = None
     vehicle_class: str | None = None  # "sports", "super", "off-road", ...
     price: int | None = None  # in-game currency
+    notes: str | None = None  # free-text description from the source
     stats: dict[str, float] = Field(default_factory=dict)  # speed/accel/handling if exposed
     source: str
     updated_at: datetime = Field(default_factory=utcnow)
