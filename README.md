@@ -1,69 +1,109 @@
 # gta6-data
 
-Community-run **data layer for GTA VI** (released Nov 19, 2026): structured game data
-plus a free public API. Inspired by the [tarkov.dev](https://tarkov.dev) model —
-we compete with wikis on *structured data and API access*, not on SEO content.
+Community-run, structured data for GTA VI — served through a **free, open API**.
+We compete with wikis on structured data and API access, not on SEO content.
 
-**Not affiliated with Rockstar Games or Take-Two Interactive.** We store game *facts*
-(prices, names, locations), never copyrighted assets.
+> **Not affiliated with Rockstar Games or Take-Two Interactive.** We store game
+> *facts* (names, classes, locations), never copyrighted assets.
 
-## Status: pre-launch scaffold
-
-Everything here is scaffolding built **before launch** (Nov 12, 2026). Real sources and
-parse rules can only be pinned during launch-week datamining (Nov 19–22). Items marked
-`TODO(launch week)` are intentional placeholders.
-
-## Layout
+## Base URL
 
 ```
-src/gta6data/
-  models.py     Pydantic models (Vehicle, Location, Mission, PricePoint) — provisional
-  db.py         SQLite storage (upsert + list + get per dataset)
-  api.py        FastAPI read-only API: /api/v1/{vehicles,locations,missions,prices}
-  scrapers/     Scraper base class (retries, polite UA) + stub scrapers
-scripts/run_scraper.py   CLI: --list / --name X / --all
-tests/         pytest suite (models, db, API)
-ansible/         VPS deployment: playbook (systemd + Caddy + ufw), env-driven inventory
-.github/workflows/  ci | data-refresh (scrape → PR → merge) | deploy (Ansible to VPS)
+https://gta6data.xyz
 ```
 
-## Local usage
+Interactive docs: [`https://gta6data.xyz/docs`](https://gta6data.xyz/docs) (OpenAPI/Swagger).
+
+## Endpoints
+
+| Method | Path | Description |
+|---|---|---|
+| GET | `/health` | Service health check |
+| GET | `/api/v1/{dataset}?limit=N` | List records. `limit` default 500, max 5000 |
+| GET | `/api/v1/{dataset}/{record_id}` | One record by id |
+
+**Datasets:**
+
+| Dataset | Records | Notes |
+|---|---|---|
+| `vehicles` | 321 | Vehicles seen in trailers/gameplay |
+| `locations` | 108 | Cities, landmarks and other map locations |
+| `missions` | 0 | Populates during launch week |
+| `prices` | 0 | Populates during launch week |
+
+## Quickstart
 
 ```bash
-uv sync --all-extras
-uv run pytest                        # tests
-uv run python scripts/run_scraper.py --list
-uv run uvicorn gta6data.api:app --reload
+# Health check
+curl https://gta6data.xyz/health
+# {"status":"ok"}
+
+# First 3 vehicles (total count always returned)
+curl "https://gta6data.xyz/api/v1/vehicles?limit=3"
+# {"dataset":"vehicles","count":321,"records":[ ... ]}
+
+# One vehicle by id
+curl https://gta6data.xyz/api/v1/vehicles/55-vapid-stanier
+
+# Unknown datasets and records return 404
+curl https://gta6data.xyz/api/v1/spells
+# {"detail":"unknown dataset 'spells'"}  (HTTP 404)
 ```
 
-The API reads the SQLite db from `GTA6_DB` (default `data/gta6.sqlite3`).
+## Record shape
 
-## Launch-week plan (Nov 19–22)
+Every record carries a `source` URL (where the fact came from) and `updated_at`.
+Optional fields are `null` until the data exists in-game.
 
-1. **Day 0 (launch night):** identify which community sources publish first
-   (wikis, datamine Discords, Reddit megathreads). Pick 1–2 per dataset.
-2. **Day 1–2:** pin `source_url` per stub scraper; write real `parse()` rules;
-   run the suite; start the CronJob.
-3. **Day 3–4:** lock final schemas (vehicles are the first target: price + class data
-   shows up immediately in-game); publish API + a minimal landing page.
-4. **Later:** GTA Online data (Q1–Q3 2027 est.) — economy tracker becomes the core product.
+**Vehicle:**
 
-## Autonomous pipeline
+```json
+{
+  "id": "55-vapid-stanier",
+  "name": "'55 Vapid Stanier",
+  "manufacturer": "Vapid",
+  "vehicle_class": "Sedan",
+  "price": null,
+  "notes": "A sedan, spotted in Trailer 1.",
+  "stats": {},
+  "source": "https://gta6intel.com/vehicles/55-vapid-stanier",
+  "updated_at": "2026-11-18T16:40:38.710652Z"
+}
+```
 
-The repo runs itself on GitHub Actions; the VPS only serves the API:
+**Location:**
 
-1. **data-refresh** (cron every 6h, manual dispatch): runs scrapers in CI,
-   commits `data/gta6.sqlite3` to a branch, opens a PR, squash-merges it.
-2. **deploy** (push to main + workflow_run): test gate, then
-   `ansible-playbook ansible/playbook.yml` over SSH → git checkout at the
-   merged SHA, `uv sync`, restart `gta6-api` (systemd) behind Caddy.
-3. **ci**: pytest on every PR and push to main.
+```json
+{
+  "id": "alligator-creek",
+  "name": "Alligator Creek",
+  "area": null,
+  "kind": "Landmark",
+  "lat": null,
+  "lon": null,
+  "notes": null,
+  "source": "https://gta6intel.com/locations/alligator-creek",
+  "updated_at": "2026-11-18T16:45:20.946160Z"
+}
+```
 
-Required repo secrets: `VPS_HOST`, `VPS_SSH_KEY` (deploy key private half),
-optional `VPS_USER` (default `root`). Optional var `gta6_domain` switches
-Caddy to automatic TLS. The scraped SQLite database is versioned in Git.
+## Data provenance & attribution
 
-## Monetization (honest)
+Data is scraped hourly from public fan sources — currently
+[gta6intel.com](https://gta6intel.com) — and refreshed into this API
+automatically. Every record carries its `source` URL so any fact can be
+checked against the original page. If you use this API, credit the upstream
+sources too.
 
-Donations + ads on a future landing page. Expected: symbolic at first. This is a
-community asset, not a revenue bet.
+This project is not affiliated with Rockstar Games or Take-Two Interactive.
+
+## Self-hosting
+
+The API is a small FastAPI service. An Ansible playbook deploys it to a VPS
+(systemd + Caddy) — see [`ansible/playbook.yml`](ansible/playbook.yml).
+
+## Contributing
+
+Found an error, or missing data? The datasets live in
+[`data/*.json`](data/) — fix or extend the JSON and open a PR. Contributions
+welcome under the [MIT license](LICENSE).
