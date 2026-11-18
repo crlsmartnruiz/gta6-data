@@ -1,0 +1,95 @@
+"""Scraper framework. Each scraper: fetch a source, parse to models, store in SQLite.
+
+Launch-week sources are deliberately stubbed: real URLs and parsing rules can
+only be written once the game ships and community sources stabilize (Nov 19+).
+"""
+
+from __future__ import annotations
+
+import logging
+import time
+from abc import ABC, abstractmethod
+from typing import Any
+
+import httpx
+from pydantic import BaseModel
+
+from .. import db
+from ..models import Location, Mission, Vehicle
+
+log = logging.getLogger(__name__)
+
+USER_AGENT = "gta6-data/0.1 (+https://github.com/crlsmartnruiz/gta6-data; community data project)"
+RETRY_DELAYS = (1, 2, 5, 10)
+
+
+class Scraper(ABC):
+    name: str
+    dataset: str  # key in db.DATASETS
+    source_url: str | None = None  # set per scraper; None until launch week pins it
+
+    def fetch(self, url: str | None = None, **kwargs: Any) -> str:
+        """GET with retries + polite backoff. Returns response text."""
+        target = url or self.source_url
+        if not target:
+            raise ValueError(f"{self.name}: no source URL configured yet")
+        headers = {"User-Agent": USER_AGENT}
+        last_exc: Exception | None = None
+        for delay in (0, *RETRY_DELAYS):
+            if delay:
+                time.sleep(delay)
+            try:
+                resp = httpx.get(target, headers=headers, timeout=30, follow_redirects=True,
+                                 **kwargs)
+                resp.raise_for_status()
+                return resp.text
+            except httpx.HTTPError as exc:
+                log.warning("%s: fetch failed (%s), retrying...", self.name, exc)
+                last_exc = exc
+        raise RuntimeError(f"{self.name}: all fetch attempts failed") from last_exc
+
+    @abstractmethod
+    def parse(self, raw: str) -> list[BaseModel]:
+        """Turn raw response into domain models. Implemented per scraper."""
+
+    def run(self, conn=None) -> int:
+        raw = self.fetch()
+        items = self.parse(raw)
+        conn = conn or db.connect()
+        written = db.upsert(conn, self.dataset, items)
+        log.info("%s: wrote %d records to %s", self.name, written, self.dataset)
+        return written
+
+
+class VehiclesStubScraper(Scraper):
+    """Placeholder: parse real vehicle list once a reliable source exists."""
+
+    name = "vehicles-stub"
+    dataset = "vehicles"
+    source_url = None  # TODO(launch week): pin source (official site / community wiki / datamine)
+
+    def parse(self, raw: str) -> list[Vehicle]:
+        return []  # TODO(launch week)
+
+
+class LocationsStubScraper(Scraper):
+    name = "locations-stub"
+    dataset = "locations"
+    source_url = None  # TODO(launch week)
+
+    def parse(self, raw: str) -> list[Location]:
+        return []  # TODO(launch week)
+
+
+class MissionsStubScraper(Scraper):
+    name = "missions-stub"
+    dataset = "missions"
+    source_url = None  # TODO(launch week)
+
+    def parse(self, raw: str) -> list[Mission]:
+        return []  # TODO(launch week)
+
+
+REGISTRY: dict[str, type[Scraper]] = {
+    s.name: s for s in (VehiclesStubScraper, LocationsStubScraper, MissionsStubScraper)
+}
