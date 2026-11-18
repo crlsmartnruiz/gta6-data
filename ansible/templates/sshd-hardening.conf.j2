@@ -1,0 +1,6 @@
+# Managed by ansible (gta6-data deploy). Key-only SSH.
+# Drop-in for /etc/ssh/sshd_config (Ubuntu loads sshd_config.d/*.conf).
+PasswordAuthentication no
+KbdInteractiveAuthentication no
+X11Forwarding no
+PermitRootLogin prohibit-password
