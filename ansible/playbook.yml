@@ -50,14 +50,16 @@
 
     - name: Create app directory owned by service user
       ansible.builtin.file:
-        path: "{{ item }}"
+        path: "{{ item.path }}"
         state: directory
         owner: "{{ app_user }}"
         group: "{{ app_user }}"
-        mode: "0750"
+        mode: "{{ item.mode }}"
       loop:
-        - "{{ app_dir }}"
-        - "{{ app_dir }}/data"
+        # 0755 so the caddy user can traverse app_dir and serve web/
+        # statically; data/ stays private to the service account.
+        - { path: "{{ app_dir }}", mode: "0755" }
+        - { path: "{{ app_dir }}/data", mode: "0750" }
 
     - name: Check out repo at deployed ref
       become_user: "{{ app_user }}"
