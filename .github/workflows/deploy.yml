@@ -42,9 +42,11 @@ jobs:
             echo "ready=false" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Install ansible
+      - name: Install ansible and required collections
         if: steps.cfg.outputs.ready == 'true'
-        run: python3 -m pip install --user "ansible-core>=2.16" "community.general>=8"
+        run: |
+          python3 -m pip install --user "ansible-core>=2.16"
+          ansible-galaxy collection install community.general
 
       - name: Prepare SSH access
         if: steps.cfg.outputs.ready == 'true'
