@@ -61,35 +61,29 @@ class Scraper(ABC):
         return written
 
 
-class VehiclesStubScraper(Scraper):
-    """Placeholder: parse real vehicle list once a reliable source exists."""
-
-    name = "vehicles-stub"
-    dataset = "vehicles"
-    source_url = None  # TODO(launch week): pin source (official site / community wiki / datamine)
-
-    def parse(self, raw: str) -> list[Vehicle]:
-        return []  # TODO(launch week)
-
-
-class LocationsStubScraper(Scraper):
-    name = "locations-stub"
-    dataset = "locations"
-    source_url = None  # TODO(launch week)
-
-    def parse(self, raw: str) -> list[Location]:
-        return []  # TODO(launch week)
+# vehicles-stub / locations-stub retired: real scrapers (gta6intel.com) live in
+# vehicles_intel.py / locations_intel.py.
 
 
 class MissionsStubScraper(Scraper):
     name = "missions-stub"
     dataset = "missions"
-    source_url = None  # TODO(launch week)
+    source_url = None  # TODO(launch week): game unlocks Nov 19; missions pages empty pre-launch
 
     def parse(self, raw: str) -> list[Mission]:
         return []  # TODO(launch week)
 
 
+# Imported last (but before REGISTRY): the real scrapers do
+# `from . import Scraper`, which requires the base class to exist when their
+# module initializes (avoids a cycle).
+from .locations_intel import LocationsIntelScraper  # noqa: E402
+from .vehicles_intel import VehiclesIntelScraper  # noqa: E402
+
 REGISTRY: dict[str, type[Scraper]] = {
-    s.name: s for s in (VehiclesStubScraper, LocationsStubScraper, MissionsStubScraper)
+    s.name: s for s in (
+        VehiclesIntelScraper,
+        LocationsIntelScraper,
+        MissionsStubScraper,
+    )
 }
