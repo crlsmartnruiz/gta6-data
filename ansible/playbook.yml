@@ -48,11 +48,14 @@
 
     - name: Create app directory owned by service user
       ansible.builtin.file:
-        path: "{{ app_dir }}"
+        path: "{{ item }}"
         state: directory
         owner: "{{ app_user }}"
         group: "{{ app_user }}"
         mode: "0750"
+      loop:
+        - "{{ app_dir }}"
+        - "{{ app_dir }}/data"
 
     - name: Check out repo at deployed ref
       become_user: "{{ app_user }}"
