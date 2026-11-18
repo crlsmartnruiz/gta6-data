@@ -52,8 +52,10 @@ class Mission(BaseModel):
 class PricePoint(BaseModel):
     """One observed in-game economy sample (store prices, market items)."""
 
+    id: str
     item_id: str
     price: int
     currency: str = "GTA$"
     observed_at: datetime = Field(default_factory=utcnow)
     source: str
+    updated_at: datetime = Field(default_factory=utcnow)

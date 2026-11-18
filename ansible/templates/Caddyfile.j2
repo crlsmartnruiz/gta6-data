@@ -5,6 +5,12 @@
 {{ gta6_domain }} {
     reverse_proxy 127.0.0.1:8000
     encode gzip
+    @openapi path /api/* /docs /openapi.json
+    header @openapi {
+        Access-Control-Allow-Origin "*"
+        Access-Control-Allow-Methods "GET, OPTIONS"
+        Access-Control-Allow-Headers "Content-Type"
+    }
     header {
         X-Content-Type-Options nosniff
         X-Frame-Options DENY
@@ -17,6 +23,12 @@
 :80 {
     reverse_proxy 127.0.0.1:8000
     encode gzip
+    @openapi path /api/* /docs /openapi.json
+    header @openapi {
+        Access-Control-Allow-Origin "*"
+        Access-Control-Allow-Methods "GET, OPTIONS"
+        Access-Control-Allow-Headers "Content-Type"
+    }
     header {
         X-Content-Type-Options nosniff
         X-Frame-Options DENY

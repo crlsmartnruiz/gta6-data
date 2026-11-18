@@ -2,11 +2,38 @@
 
 from __future__ import annotations
 
+import os
+from contextlib import asynccontextmanager
 from pathlib import Path
 
-from fastapi import FastAPI, HTTPException, Query
+from fastapi import FastAPI, HTTPException, Query, Request
 
 from . import db
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # One shared sqlite connection for the whole process: opened once at
+    # startup, closed at shutdown. Async endpoints keep every access on the
+    # event-loop thread, so no check_same_thread handling is needed.
+    db_path = Path(os.environ.get("GTA6_DB", db.DEFAULT_DB))
+    data_dir = db_path.parent  # committed per-dataset JSON files live here
+    app.state.conn = db.connect(db_path)
+    try:
+        # Rebuild the runtime DB from the committed data/*.json files before
+        # serving. Idempotent: clear each dataset's rows, then re-import, so a
+        # restart always reflects the latest JSON state.
+        for dataset in db.DATASETS:
+            json_path = data_dir / f"{dataset}.json"
+            if not json_path.exists():
+                continue
+            app.state.conn.execute("DELETE FROM records WHERE dataset = ?", (dataset,))
+            app.state.conn.commit()
+            db.import_json(app.state.conn, json_path, dataset)
+        yield
+    finally:
+        app.state.conn.close()
+
 
 app = FastAPI(
     title="gta6-data API",
@@ -15,11 +42,8 @@ app = FastAPI(
         "Community-run, structured GTA VI data. Free and open. "
         "Not affiliated with Rockstar Games or Take-Two Interactive."
     ),
+    lifespan=lifespan,
 )
-
-
-def _conn():
-    return db.connect(Path(__import__("os").environ.get("GTA6_DB", db.DEFAULT_DB)))
 
 
 @app.get("/health")
@@ -28,19 +52,21 @@ def health() -> dict[str, str]:
 
 
 @app.get("/api/v1/{dataset}")
-def list_records(dataset: str, limit: int = Query(default=500, le=5000)):
+async def list_records(
+    request: Request, dataset: str, limit: int = Query(default=500, le=5000)
+):
     model = db.DATASETS.get(dataset)
     if model is None:
         raise HTTPException(status_code=404, detail=f"unknown dataset '{dataset}'")
-    records = db.list_dataset(_conn(), dataset)
+    records = db.list_dataset(request.app.state.conn, dataset)
     return {"dataset": dataset, "count": len(records), "records": records[:limit]}
 
 
 @app.get("/api/v1/{dataset}/{record_id}")
-def get_record(dataset: str, record_id: str):
+async def get_record(request: Request, dataset: str, record_id: str):
     if dataset not in db.DATASETS:
         raise HTTPException(status_code=404, detail=f"unknown dataset '{dataset}'")
-    record = db.get_record(_conn(), dataset, record_id)
+    record = db.get_record(request.app.state.conn, dataset, record_id)
     if record is None:
         raise HTTPException(status_code=404, detail=f"no record '{record_id}' in '{dataset}'")
     return record

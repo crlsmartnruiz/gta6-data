@@ -53,6 +53,29 @@ def upsert(conn: sqlite3.Connection, dataset: str, items: list[BaseModel]) -> in
     return written
 
 
+def export_json(conn: sqlite3.Connection, dataset: str, path: Path) -> int:
+    """Write `dataset` to `path` as a JSON array sorted by id (committed state
+    of truth: per-dataset JSON files, diffable and mergeable in git)."""
+    records = list_dataset(conn, dataset)  # already ordered by id
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(records, indent=2) + "\n")
+    return len(records)
+
+
+def import_json(conn: sqlite3.Connection, path: Path, dataset: str) -> int:
+    """Read a JSON array from `path`, validate every record against the
+    dataset model in DATASETS, and upsert it. Returns records written."""
+    model = DATASETS.get(dataset)
+    if model is None:
+        raise ValueError(f"unknown dataset '{dataset}'")
+    records = json.loads(Path(path).read_text())
+    if not isinstance(records, list):
+        raise ValueError(f"{path}: expected a JSON array of '{dataset}' records")
+    items = [model.model_validate(record) for record in records]
+    return upsert(conn, dataset, items)
+
+
 def list_dataset(conn: sqlite3.Connection, dataset: str) -> list[dict[str, Any]]:
     rows = conn.execute(
         "SELECT data FROM records WHERE dataset = ? ORDER BY id", (dataset,)
