@@ -22,7 +22,7 @@ jobs:
        github.event.workflow_run.head_branch == 'main')
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Install uv and run test gate
         run: |
@@ -69,4 +69,5 @@ jobs:
           export ANSIBLE_PRIVATE_KEY_FILE=~/.ssh/gta6_deploy_ed25519
           ansible-playbook ansible/playbook.yml \
             --extra-vars "git_ref=${GITHUB_SHA}" \
-            --extra-vars "git_token=${{ github.token }}"
+            --extra-vars "git_token=${{ github.token }}" \
+            --extra-vars "gta6_domain=gta6data.xyz"
