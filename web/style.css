@@ -1,13 +1,15 @@
-/* gta6-data — channel water, coconut ivory, one flamingo accent. */
+/* gta6-data — Vice nightfall: violet dusk, coconut ink, neon pink,
+   and one sunset-gradient signature (the horizon under the header). */
 
 :root {
   color-scheme: dark;
-  --bg: #0E1B20;
-  --bg-raise: #152629;
-  --ink: #E8E2D2;
-  --muted: #90A6A6;
-  --hair: #24383C;
-  --accent: #F26D78;
+  --bg: #170D24;
+  --bg-raise: #231435;
+  --ink: #F3ECDD;
+  --muted: #A394C2;
+  --hair: #322050;
+  --accent: #FF4D9D;
+  --accent-2: #FF9E4F;
   --radius: 3px;
   --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
@@ -17,7 +19,10 @@
 
 body {
   margin: 0;
-  background: var(--bg);
+  /* Faint dusk glow behind the header, like a Vice City night sky. */
+  background:
+    radial-gradient(60rem 24rem at 50% -8rem, rgba(255, 77, 157, 0.09), transparent 70%),
+    var(--bg);
   color: var(--ink);
   font: 0.9375rem/1.5 var(--sans);
   -webkit-font-smoothing: antialiased;
@@ -26,6 +31,7 @@ body {
 /* Header: wordmark + inline tabular counts. */
 
 header {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem 2.5rem;
@@ -36,10 +42,35 @@ header {
   padding: 2.5rem 1.25rem 1.5rem;
 }
 
+/* Signature: the Vice City sunset horizon, one gradient line. */
+header::after {
+  content: "";
+  position: absolute;
+  left: 1.25rem;
+  right: 1.25rem;
+  bottom: 0;
+  height: 2px;
+  background: linear-gradient(90deg,
+    transparent,
+    var(--accent) 28%,
+    var(--accent-2) 72%,
+    transparent);
+}
+
 h1 {
   margin: 0;
   font: 700 1.75rem/1.1 var(--mono);
   letter-spacing: -0.02em;
+}
+
+/* Wordmark in the VI sunset gradient; plain ink if clip-text is unsupported. */
+@supports (background-clip: text) or (-webkit-background-clip: text) {
+  h1 {
+    background: linear-gradient(92deg, var(--accent) 15%, var(--accent-2) 85%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
 }
 
 .tagline {
