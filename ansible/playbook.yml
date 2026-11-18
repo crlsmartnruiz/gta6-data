@@ -88,7 +88,7 @@
         src: Caddyfile.j2
         dest: /etc/caddy/Caddyfile
         mode: "0644"
-        validate: "caddy validate --config %s"
+        validate: "caddy validate --adapter caddyfile --config %s"
       notify: Reload caddy
 
     - name: Firewall - allow SSH, HTTP, HTTPS
