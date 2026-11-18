@@ -31,7 +31,8 @@
       ansible.builtin.user:
         name: "{{ app_user }}"
         system: true
-        home: "{{ app_dir }}"
+        home: "/home/{{ app_user }}"
+        move_home: true
         create_home: true
         shell: /usr/sbin/nologin
 
