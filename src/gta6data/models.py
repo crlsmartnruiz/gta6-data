@@ -46,6 +46,7 @@ class Mission(BaseModel):
     kind: str | None = None  # "story", "side", "event", ...
     reward: str | None = None
     prereq: list[str] = Field(default_factory=list)
+    notes: str | None = None  # free-text description from the source
     source: str
     updated_at: datetime = Field(default_factory=utcnow)
 
