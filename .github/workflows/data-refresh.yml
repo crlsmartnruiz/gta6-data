@@ -10,7 +10,6 @@ permissions:
   contents: write
   pull-requests: write
   issues: write
-  actions: write  # dispatch ci on the bot's data branch (required check)
 
 concurrency:
   group: data-refresh
@@ -126,16 +125,22 @@ jobs:
       - name: Open PR and wait for CI, then merge
         if: steps.diff.outputs.changed == 'true'
         env:
-          GH_TOKEN: ${{ github.token }}
+          # PRs created with the workflow's GITHUB_TOKEN do not fire
+          # pull_request events (recursive-workflow prevention), so the
+          # required 'tests' check never associates with the PR and branch
+          # protection (strict + enforce_admins) blocks the merge forever.
+          # A fine-grained PAT (GTA6_BOT_PAT: contents:rw, pull-requests:rw,
+          # this repo only) fires events normally and satisfies protection.
+          GH_TOKEN: ${{ secrets.GTA6_BOT_PAT }}
         run: |
+          if [ -z "$GH_TOKEN" ]; then
+            echo "::error::Secret GTA6_BOT_PAT is not set. Create a fine-grained PAT (contents:rw + pull-requests:rw, this repo only) and add it as a repo secret."
+            exit 1
+          fi
           gh pr create \
             --title "chore(data): auto-refresh datasets" \
             --body "Automated scraper run. Data diff attached to the commit. Pipeline: scrape → PR → merge → deploy."
           PR=$(gh pr list --head "$branch" --json number --jq '.[].number')
-          echo "PR #$PR — dispatching ci (GITHUB_TOKEN PRs fire no pull_request events)"
-          # Bot PRs don't trigger pull_request workflows; dispatch ci on the
-          # data branch so the required 'tests' check exists on the head SHA.
-          gh workflow run ci.yml --ref "$branch"
           echo "PR #$PR — waiting for required checks (branch protection)"
           # Wait for checks to be reported (they start async on pull_request)
           for i in $(seq 1 20); do
