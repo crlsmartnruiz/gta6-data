@@ -71,3 +71,22 @@ jobs:
             --extra-vars "git_ref=${GITHUB_SHA}" \
             --extra-vars "git_token=${{ github.token }}" \
             --extra-vars "gta6_domain=gta6data.xyz"
+
+      - name: Smoke test production
+        # Proves the deploy actually works end to end: /health must return
+        # the API's JSON (the Caddy @api matcher routes it) and every
+        # dataset endpoint must answer. Catches Caddy routing regressions
+        # that a 200-only check would miss.
+        if: steps.cfg.outputs.ready == 'true'
+        run: |
+          ok=""
+          for i in $(seq 1 12); do
+            if curl -fsS https://gta6data.xyz/health 2>/dev/null | grep -q '"status"'; then ok=1; break; fi
+            sleep 10
+          done
+          [ -n "$ok" ] || { echo "::error::/health did not return API JSON within 2 minutes"; exit 1; }
+          for ds in vehicles locations missions prices; do
+            curl -fsS "https://gta6data.xyz/api/v1/$ds?limit=1" > /dev/null \
+              || { echo "::error::dataset $ds endpoint failed"; exit 1; }
+          done
+          echo "Smoke test passed: /health JSON + all dataset endpoints respond."
