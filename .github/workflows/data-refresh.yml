@@ -131,6 +131,10 @@ jobs:
             --title "chore(data): auto-refresh datasets" \
             --body "Automated scraper run. Data diff attached to the commit. Pipeline: scrape → PR → merge → deploy."
           PR=$(gh pr list --head "$branch" --json number --jq '.[].number')
+          echo "PR #$PR — dispatching ci (GITHUB_TOKEN PRs fire no pull_request events)"
+          # Bot PRs don't trigger pull_request workflows; dispatch ci on the
+          # data branch so the required 'tests' check exists on the head SHA.
+          gh workflow run ci.yml --ref "$branch"
           echo "PR #$PR — waiting for required checks (branch protection)"
           # Wait for checks to be reported (they start async on pull_request)
           for i in $(seq 1 20); do
