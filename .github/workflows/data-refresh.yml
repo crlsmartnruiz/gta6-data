@@ -10,6 +10,7 @@ permissions:
   contents: write
   pull-requests: write
   issues: write
+  actions: write  # dispatch ci on the bot's data branch (required check)
 
 concurrency:
   group: data-refresh
