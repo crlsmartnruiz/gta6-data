@@ -3,6 +3,10 @@ on:
   push:
     branches: [main]
   pull_request:
+  # Fired by data-refresh on the data branch: PRs created with GITHUB_TOKEN
+  # do not trigger pull_request events (recursive-workflow prevention), so
+  # the bot dispatches ci explicitly to produce the required check.
+  workflow_dispatch:
 
 permissions:
   contents: read
