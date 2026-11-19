@@ -1,1 +1,1372 @@
-[]
+[
+  {
+    "id": "adventures-in-babysitting",
+    "name": "Adventures in Babysitting",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Jason works nightclub security for Andr\u00e9s de Le\u00f3n.",
+    "source": "https://gta6intel.com/missions/adventures-in-babysitting",
+    "updated_at": "2026-11-19T10:34:37.373605Z"
+  },
+  {
+    "id": "afternoon-delight",
+    "name": "Afternoon Delight",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Vicki wants to rob her boss at the Delights club and split the money with Jason and Lucia.",
+    "source": "https://gta6intel.com/missions/afternoon-delight",
+    "updated_at": "2026-11-19T10:33:34.894810Z"
+  },
+  {
+    "id": "amateur-hour",
+    "name": "Amateur Hour",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Lucia helps a contact confront a film director.",
+    "source": "https://gta6intel.com/missions/amateur-hour",
+    "updated_at": "2026-11-19T10:34:32.774702Z"
+  },
+  {
+    "id": "ambulance-chaser",
+    "name": "Ambulance Chaser",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Lucia has to get rid of an ambulance before the police find it.",
+    "source": "https://gta6intel.com/missions/ambulance-chaser",
+    "updated_at": "2026-11-19T10:33:23.179945Z"
+  },
+  {
+    "id": "another-life",
+    "name": "Another Life",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Lucia thinks back on her past.",
+    "source": "https://gta6intel.com/missions/another-life",
+    "updated_at": "2026-11-19T10:34:19.092941Z"
+  },
+  {
+    "id": "bad-driver",
+    "name": "Bad Driver!",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "An optional job to track down a man called Felipe.",
+    "source": "https://gta6intel.com/missions/bad-driver",
+    "updated_at": "2026-11-19T10:35:05.991489Z"
+  },
+  {
+    "id": "behind-on-payments",
+    "name": "Behind on Payments",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Lucia settles the motel bill with the manager.",
+    "source": "https://gta6intel.com/missions/behind-on-payments",
+    "updated_at": "2026-11-19T10:35:12.139440Z"
+  },
+  {
+    "id": "bird-in-the-hand",
+    "name": "Bird in the Hand",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Chapter 5 opens with Jason and Lucia stealing a new ride.",
+    "source": "https://gta6intel.com/missions/bird-in-the-hand",
+    "updated_at": "2026-11-19T10:34:54.779944Z"
+  },
+  {
+    "id": "blood-sweat-and-gear",
+    "name": "Blood Sweat and Gear",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Lucia works out at the gym.",
+    "source": "https://gta6intel.com/missions/blood-sweat-and-gear",
+    "updated_at": "2026-11-19T10:35:13.666120Z"
+  },
+  {
+    "id": "boobie-time",
+    "name": "Boobie Time",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Jason spends time driving Boobie Ike around Vice City.",
+    "source": "https://gta6intel.com/missions/boobie-time",
+    "updated_at": "2026-11-19T10:33:52.981099Z"
+  },
+  {
+    "id": "breakfast-run",
+    "name": "Breakfast Run",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Lucia goes back to the motel to see how Jason is doing.",
+    "source": "https://gta6intel.com/missions/breakfast-run",
+    "updated_at": "2026-11-19T10:33:31.942988Z"
+  },
+  {
+    "id": "bricked-up",
+    "name": "Bricked Up",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Jason and Lucia do some work for Boobie.",
+    "source": "https://gta6intel.com/missions/bricked-up",
+    "updated_at": "2026-11-19T10:34:13.000124Z"
+  },
+  {
+    "id": "buck-me",
+    "name": "Buck Me",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Lucia needs a bank account for her community service pay, so Jason meets her at the bank to set one up.",
+    "source": "https://gta6intel.com/missions/buck-me",
+    "updated_at": "2026-11-19T10:35:07.420185Z"
+  },
+  {
+    "id": "building-a-life",
+    "name": "Building a Life",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Jason and Lucia work on their home together, and Jason teaches Lucia to shoot.",
+    "source": "https://gta6intel.com/missions/building-a-life",
+    "updated_at": "2026-11-19T10:35:15.050747Z"
+  },
+  {
+    "id": "buy-flowers",
+    "name": "Buy Flowers",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "An optional errand: order flowers for Lucia's homecoming.",
+    "source": "https://gta6intel.com/missions/buy-flowers",
+    "updated_at": "2026-11-19T10:35:59.852873Z"
+  },
+  {
+    "id": "buy-lucia-a-necklace",
+    "name": "Buy Lucia a Necklace",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "An optional errand: buy Lucia a necklace as a gift.",
+    "source": "https://gta6intel.com/missions/buy-lucia-a-necklace",
+    "updated_at": "2026-11-19T10:36:01.678311Z"
+  },
+  {
+    "id": "call-nate",
+    "name": "Call Nate",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Lucia gives a new contact a call.",
+    "source": "https://gta6intel.com/missions/call-nate",
+    "updated_at": "2026-11-19T10:35:16.674557Z"
+  },
+  {
+    "id": "call-valentina-back",
+    "name": "Call Valentina Back",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Valentina is waiting to hear back.",
+    "source": "https://gta6intel.com/missions/call-valentina-back",
+    "updated_at": "2026-11-19T10:35:18.091324Z"
+  },
+  {
+    "id": "car-service",
+    "name": "Car Service",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Lucia steals a car for Raul.",
+    "source": "https://gta6intel.com/missions/car-service",
+    "updated_at": "2026-11-19T10:33:49.852316Z"
+  },
+  {
+    "id": "cash-injections",
+    "name": "Cash Injections",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Lucia spends time with a new contact and helps out one of his associates.",
+    "source": "https://gta6intel.com/missions/cash-injections",
+    "updated_at": "2026-11-19T10:34:31.326270Z"
+  },
+  {
+    "id": "caught-slipping",
+    "name": "Caught Slipping",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Jason and Lucia have to stop a burglary.",
+    "source": "https://gta6intel.com/missions/caught-slipping",
+    "updated_at": "2026-11-19T10:33:55.939357Z"
+  },
+  {
+    "id": "checking-out",
+    "name": "Checking Out",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "The last mission of Chapter 2: Jason and Lucia pack up, leave the motel and head for Vice City.",
+    "source": "https://gta6intel.com/missions/checking-out",
+    "updated_at": "2026-11-19T10:33:36.472956Z"
+  },
+  {
+    "id": "childs-play",
+    "name": "Child's Play",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Jason and Lucia help out someone they know.",
+    "source": "https://gta6intel.com/missions/childs-play",
+    "updated_at": "2026-11-19T10:34:41.657846Z"
+  },
+  {
+    "id": "clean-up-after-donnie",
+    "name": "Clean Up After Donnie",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Donnie needs help finding a package lost from a bad delivery, now sending out a signal near a Hamlet fishing spot.",
+    "source": "https://gta6intel.com/missions/clean-up-after-donnie",
+    "updated_at": "2026-11-19T10:36:03.279986Z"
+  },
+  {
+    "id": "clear-skies",
+    "name": "Clear Skies",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "A Chapter 1 job for Jason that starts in Southwind.",
+    "source": "https://gta6intel.com/missions/clear-skies",
+    "updated_at": "2026-11-19T10:36:04.744349Z"
+  },
+  {
+    "id": "clock-out",
+    "name": "Clock Out",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "An optional pick-up: Lucia finishes her shift early and calls Jason.",
+    "source": "https://gta6intel.com/missions/clock-out",
+    "updated_at": "2026-11-19T10:36:06.223680Z"
+  },
+  {
+    "id": "close-surveillance",
+    "name": "Close Surveillance",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Jason uses a spy drone to keep watch on a group of bodybuilders.",
+    "source": "https://gta6intel.com/missions/close-surveillance",
+    "updated_at": "2026-11-19T10:34:44.599587Z"
+  },
+  {
+    "id": "coffee-break",
+    "name": "Coffee Break",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "After a run of stick-ups, Jason and Lucia sit down over coffee to plan what comes next.",
+    "source": "https://gta6intel.com/missions/coffee-break",
+    "updated_at": "2026-11-19T10:33:33.492134Z"
+  },
+  {
+    "id": "coming-home",
+    "name": "Coming Home",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Lucia is due out of prison and Jason goes to pick her up, then takes her out to celebrate with friends at the Rusty Anchor.",
+    "source": "https://gta6intel.com/missions/coming-home",
+    "updated_at": "2026-11-19T10:33:09.652523Z"
+  },
+  {
+    "id": "company-cars",
+    "name": "Company Cars",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Jason and Lucia pick up some new wheels.",
+    "source": "https://gta6intel.com/missions/company-cars",
+    "updated_at": "2026-11-19T10:34:20.494479Z"
+  },
+  {
+    "id": "company-property",
+    "name": "Company Property",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Jason and Lucia meet Brian and help him with a weapons shipment.",
+    "source": "https://gta6intel.com/missions/company-property",
+    "updated_at": "2026-11-19T10:34:06.416191Z"
+  },
+  {
+    "id": "cooties",
+    "name": "Cooties",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Lucia helps out on a music video shoot.",
+    "source": "https://gta6intel.com/missions/cooties",
+    "updated_at": "2026-11-19T10:34:10.814753Z"
+  },
+  {
+    "id": "credit-check",
+    "name": "Credit Check",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Raul invites Jason and Lucia to his base to meet his crew.",
+    "source": "https://gta6intel.com/missions/credit-check",
+    "updated_at": "2026-11-19T10:33:59.106057Z"
+  },
+  {
+    "id": "crosstown-traffic",
+    "name": "Crosstown Traffic",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Lucia tails a gang member for Raul while Jason goes to a meeting of his own.",
+    "source": "https://gta6intel.com/missions/crosstown-traffic",
+    "updated_at": "2026-11-19T10:33:57.504999Z"
+  },
+  {
+    "id": "daily-driver",
+    "name": "Daily Driver",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Lucia takes back a car for Moses from clients who never paid for it.",
+    "source": "https://gta6intel.com/missions/daily-driver",
+    "updated_at": "2026-11-19T10:33:29.147389Z"
+  },
+  {
+    "id": "day-release",
+    "name": "Day Release",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Kat and Mattia invite Jason and Lucia out for a day of partying.",
+    "source": "https://gta6intel.com/missions/day-release",
+    "updated_at": "2026-11-19T10:35:19.503799Z"
+  },
+  {
+    "id": "dealers-choice",
+    "name": "Dealer's Choice",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Jason owes Boobie a favour, which means riding along with Dre'Quan on a drug deal.",
+    "source": "https://gta6intel.com/missions/dealers-choice",
+    "updated_at": "2026-11-19T10:33:39.329440Z"
+  },
+  {
+    "id": "delivery-method",
+    "name": "Delivery Method",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Jason goes undercover to help a contact.",
+    "source": "https://gta6intel.com/missions/delivery-method",
+    "updated_at": "2026-11-19T10:34:46.048195Z"
+  },
+  {
+    "id": "deposit-cash-into-buckme",
+    "name": "Deposit Cash Into BuckMe",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "A short Chapter 1 task: put some cash into the BuckMe account at an ATM.",
+    "source": "https://gta6intel.com/missions/deposit-cash-into-buckme",
+    "updated_at": "2026-11-19T10:36:07.691018Z"
+  },
+  {
+    "id": "dirty-work",
+    "name": "Dirty Work",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Jason and Lucia handle a problem and open some new doors.",
+    "source": "https://gta6intel.com/missions/dirty-work",
+    "updated_at": "2026-11-19T10:34:34.354288Z"
+  },
+  {
+    "id": "discharge-time",
+    "name": "Discharge Time",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "The last mission of Chapter 1: Lucia heads to Vice City Hospital.",
+    "source": "https://gta6intel.com/missions/discharge-time",
+    "updated_at": "2026-11-19T10:33:19.666551Z"
+  },
+  {
+    "id": "doggie-bag",
+    "name": "Doggie Bag",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "A hunt for some contraband.",
+    "source": "https://gta6intel.com/missions/doggie-bag",
+    "updated_at": "2026-11-19T10:34:59.182127Z"
+  },
+  {
+    "id": "don-gone",
+    "name": "Don Gone",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Brian sends Jason to clear out Donnie's trailer in Key Lento.",
+    "source": "https://gta6intel.com/missions/don-gone",
+    "updated_at": "2026-11-19T10:33:13.927419Z"
+  },
+  {
+    "id": "donnies-lost-drugs",
+    "name": "Donnie's Lost Drugs",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "An optional job for Brian: recover drugs from a boat that sank off Corsair Key.",
+    "source": "https://gta6intel.com/missions/donnies-lost-drugs",
+    "updated_at": "2026-11-19T10:36:09.130373Z"
+  },
+  {
+    "id": "down-to-earth",
+    "name": "Down to Earth",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Brian has a new job for Jason at the marina, and Lucia comes along for the ride.",
+    "source": "https://gta6intel.com/missions/down-to-earth",
+    "updated_at": "2026-11-19T10:33:11.008676Z"
+  },
+  {
+    "id": "dubious-provenance",
+    "name": "Dubious Provenance",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Jason and Lucia take a statue to an antiques shop in Capri to find out what it is.",
+    "source": "https://gta6intel.com/missions/dubious-provenance",
+    "updated_at": "2026-11-19T10:33:42.340029Z"
+  },
+  {
+    "id": "encrypted-hard-drive",
+    "name": "Encrypted Hard Drive",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Find out more about the hard drive from the bag.",
+    "source": "https://gta6intel.com/missions/encrypted-hard-drive",
+    "updated_at": "2026-11-19T10:35:21.074036Z"
+  },
+  {
+    "id": "feng-shui",
+    "name": "Feng Shui",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Jason and Cal spend an evening at home rearranging the furniture ahead of Lucia's return.",
+    "source": "https://gta6intel.com/missions/feng-shui",
+    "updated_at": "2026-11-19T10:33:08.229018Z"
+  },
+  {
+    "id": "find-the-lost-drugs",
+    "name": "Find the Lost Drugs",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "An optional search of the swamp for lost packages.",
+    "source": "https://gta6intel.com/missions/find-the-lost-drugs",
+    "updated_at": "2026-11-19T10:35:22.525622Z"
+  },
+  {
+    "id": "first-impressions",
+    "name": "First Impressions",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Jason and Lucia meet Raul Bautista for the first time.",
+    "source": "https://gta6intel.com/missions/first-impressions",
+    "updated_at": "2026-11-19T10:33:54.368440Z"
+  },
+  {
+    "id": "fresh-evidence",
+    "name": "Fresh Evidence",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Jason and Dre'Quan go after some blackmail material.",
+    "source": "https://gta6intel.com/missions/fresh-evidence",
+    "updated_at": "2026-11-19T10:34:38.744238Z"
+  },
+  {
+    "id": "fully-catered",
+    "name": "Fully Catered",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Jason and Lucia steal a catering truck.",
+    "source": "https://gta6intel.com/missions/fully-catered",
+    "updated_at": "2026-11-19T10:34:49.174935Z"
+  },
+  {
+    "id": "gear-up",
+    "name": "Gear Up",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Jason stops by his local Ammu-Nation to buy a long gun.",
+    "source": "https://gta6intel.com/missions/gear-up",
+    "updated_at": "2026-11-19T10:33:00.098377Z"
+  },
+  {
+    "id": "get-lucias-clothes",
+    "name": "Get Lucia's Clothes",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "An optional errand: collect clothes for Lucia from her friend Andy.",
+    "source": "https://gta6intel.com/missions/get-lucias-clothes",
+    "updated_at": "2026-11-19T10:35:23.909826Z"
+  },
+  {
+    "id": "get-shirleys-rum",
+    "name": "Get Shirley's Rum",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Shirley, Jason's neighbour, asks him to fetch her a bottle of rum. Optional and missable.",
+    "source": "https://gta6intel.com/missions/get-shirleys-rum",
+    "updated_at": "2026-11-19T10:35:25.404644Z"
+  },
+  {
+    "id": "get-the-chop",
+    "name": "Get The Chop",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "An optional errand: Jason gets a haircut or a beard trim before Lucia comes home.",
+    "source": "https://gta6intel.com/missions/get-the-chop",
+    "updated_at": "2026-11-19T10:35:26.967158Z"
+  },
+  {
+    "id": "get-your-wheels",
+    "name": "Get Your Wheels",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "An optional task: get a car in Vice City.",
+    "source": "https://gta6intel.com/missions/get-your-wheels",
+    "updated_at": "2026-11-19T10:35:28.375216Z"
+  },
+  {
+    "id": "girls-trip",
+    "name": "Girls' Trip",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Lucia asks around the motel for painkillers for Jason.",
+    "source": "https://gta6intel.com/missions/girls-trip",
+    "updated_at": "2026-11-19T10:33:26.269366Z"
+  },
+  {
+    "id": "gone-fishing",
+    "name": "Gone Fishing",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Jason and Cal wait on the water in the Keys to collect a smuggling drop from Donnie's plane, and the run quickly goes sideways.",
+    "source": "https://gta6intel.com/missions/gone-fishing",
+    "updated_at": "2026-11-19T10:32:58.672807Z"
+  },
+  {
+    "id": "headliners",
+    "name": "Headliners",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "The Real Dimez play VYB, and Jason and Lucia help with the launch party.",
+    "source": "https://gta6intel.com/missions/headliners",
+    "updated_at": "2026-11-19T10:34:43.055783Z"
+  },
+  {
+    "id": "heavy-lifting",
+    "name": "Heavy Lifting",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Jason and Lucia have a delivery to make.",
+    "source": "https://gta6intel.com/missions/heavy-lifting",
+    "updated_at": "2026-11-19T10:34:24.862972Z"
+  },
+  {
+    "id": "heist-planning",
+    "name": "Heist Planning",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Go over the plan for the upcoming heist.",
+    "source": "https://gta6intel.com/missions/heist-planning",
+    "updated_at": "2026-11-19T10:35:29.752392Z"
+  },
+  {
+    "id": "heist-plans-in-place",
+    "name": "Heist Plans in Place",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Everything is ready for the airport heist.",
+    "source": "https://gta6intel.com/missions/heist-plans-in-place",
+    "updated_at": "2026-11-19T10:36:10.746701Z"
+  },
+  {
+    "id": "here-kitty-kitty",
+    "name": "Here, Kitty Kitty",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Jason's visit to Tyrone turns into a search for a man called Charles.",
+    "source": "https://gta6intel.com/missions/here-kitty-kitty",
+    "updated_at": "2026-11-19T10:33:48.353078Z"
+  },
+  {
+    "id": "hey-arnold",
+    "name": "Hey Arnold!",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Brian's long-time broker Arnold has gone quiet, so Jason and Cal help Brian find him.",
+    "source": "https://gta6intel.com/missions/hey-arnold",
+    "updated_at": "2026-11-19T10:33:04.625902Z"
+  },
+  {
+    "id": "hidden-charges",
+    "name": "Hidden Charges",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Jason and Lucia get the explosives ready for the heist.",
+    "source": "https://gta6intel.com/missions/hidden-charges",
+    "updated_at": "2026-11-19T10:34:14.602917Z"
+  },
+  {
+    "id": "hit-avery-pawn",
+    "name": "Hit Avery Pawn",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "An optional stick-up of a Port Gellhorn pawn shop.",
+    "source": "https://gta6intel.com/missions/hit-avery-pawn",
+    "updated_at": "2026-11-19T10:36:12.230416Z"
+  },
+  {
+    "id": "hit-kingpin-bowling",
+    "name": "Hit Kingpin Bowling",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "An optional stick-up of a bowling alley.",
+    "source": "https://gta6intel.com/missions/hit-kingpin-bowling",
+    "updated_at": "2026-11-19T10:35:30.992608Z"
+  },
+  {
+    "id": "home-sweet-home",
+    "name": "Home Sweet Home",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Lucia goes back to Jason's house to pick up some of his things.",
+    "source": "https://gta6intel.com/missions/home-sweet-home",
+    "updated_at": "2026-11-19T10:33:18.315901Z"
+  },
+  {
+    "id": "honest-abe",
+    "name": "Honest Abe",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Negotiate a deal with the lawyer.",
+    "source": "https://gta6intel.com/missions/honest-abe",
+    "updated_at": "2026-11-19T10:36:13.646070Z"
+  },
+  {
+    "id": "how-do-i-look",
+    "name": "How Do I Look?",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Lucia buys some new clothes.",
+    "source": "https://gta6intel.com/missions/how-do-i-look",
+    "updated_at": "2026-11-19T10:36:15.221088Z"
+  },
+  {
+    "id": "impounded-vehicle",
+    "name": "Impounded Vehicle",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "An optional job to get Lucia's car out of the impound.",
+    "source": "https://gta6intel.com/missions/impounded-vehicle",
+    "updated_at": "2026-11-19T10:36:16.645912Z"
+  },
+  {
+    "id": "island-dreams",
+    "name": "Island Dreams",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Kenton, a treasure hunter, asks Jason to guide a bachelor party on a shipwreck dive that doubles as a treasure search.",
+    "source": "https://gta6intel.com/missions/island-dreams",
+    "updated_at": "2026-11-19T10:33:05.983909Z"
+  },
+  {
+    "id": "its-a-date",
+    "name": "It's a Date!",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "A Chapter 4 date night.",
+    "source": "https://gta6intel.com/missions/its-a-date",
+    "updated_at": "2026-11-19T10:35:32.423626Z"
+  },
+  {
+    "id": "just-a-scratch",
+    "name": "Just a Scratch",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Jason takes his beaten-up Ganado to Joey at Coastal Auto Care to get it fixed.",
+    "source": "https://gta6intel.com/missions/just-a-scratch",
+    "updated_at": "2026-11-19T10:33:03.215797Z"
+  },
+  {
+    "id": "just-moved-in",
+    "name": "Just Moved In",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Lucia picks up supplies from a convenience store near the motel.",
+    "source": "https://gta6intel.com/missions/just-moved-in",
+    "updated_at": "2026-11-19T10:33:24.604682Z"
+  },
+  {
+    "id": "lab-fees",
+    "name": "Lab Fees",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Brian sends Jason to collect overdue rent from a Key Lento gift shop that is really a front for something else.",
+    "source": "https://gta6intel.com/missions/lab-fees",
+    "updated_at": "2026-11-19T10:35:33.831826Z"
+  },
+  {
+    "id": "lawyer-up",
+    "name": "Lawyer Up",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Jason and Lucia meet a lawyer.",
+    "source": "https://gta6intel.com/missions/lawyer-up",
+    "updated_at": "2026-11-19T10:34:21.966946Z"
+  },
+  {
+    "id": "making-gainz",
+    "name": "Making Gainz",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Raul has a plan, and Lucia gets to know someone new.",
+    "source": "https://gta6intel.com/missions/making-gainz",
+    "updated_at": "2026-11-19T10:34:28.158341Z"
+  },
+  {
+    "id": "mami-knows-best",
+    "name": "Mami Knows Best",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Lucia catches up with her mother, who has just started her own real estate business.",
+    "source": "https://gta6intel.com/missions/mami-knows-best",
+    "updated_at": "2026-11-19T10:33:43.912002Z"
+  },
+  {
+    "id": "meet-the-heders",
+    "name": "Meet the Heders",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Jason and Lucia go out on a double date with Brian and Lori Heder.",
+    "source": "https://gta6intel.com/missions/meet-the-heders",
+    "updated_at": "2026-11-19T10:33:40.924129Z"
+  },
+  {
+    "id": "moses",
+    "name": "Moses",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Lucia takes a low-key car to Moses, a mechanic in Port Gellhorn who could sort her out with a ride.",
+    "source": "https://gta6intel.com/missions/moses",
+    "updated_at": "2026-11-19T10:33:27.726583Z"
+  },
+  {
+    "id": "nate-will-be-in-touch",
+    "name": "Nate Will Be in Touch",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Help out a crew while waiting to hear back from a contact.",
+    "source": "https://gta6intel.com/missions/nate-will-be-in-touch",
+    "updated_at": "2026-11-19T10:35:35.211200Z"
+  },
+  {
+    "id": "new-look",
+    "name": "New Look",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Lucia gets a new hairstyle.",
+    "source": "https://gta6intel.com/missions/new-look",
+    "updated_at": "2026-11-19T10:35:36.639358Z"
+  },
+  {
+    "id": "ocean-beach",
+    "name": "Ocean Beach",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Chapter 4 opens with Jason and Lucia setting up in Ocean Beach.",
+    "source": "https://gta6intel.com/missions/ocean-beach",
+    "updated_at": "2026-11-19T10:34:17.687553Z"
+  },
+  {
+    "id": "operation-savage-glory",
+    "name": "Operation Savage Glory",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "A valuable shipment needs to be recovered.",
+    "source": "https://gta6intel.com/missions/operation-savage-glory",
+    "updated_at": "2026-11-19T10:35:00.794356Z"
+  },
+  {
+    "id": "overnight-charges",
+    "name": "Overnight Charges",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Lucia finds out what's owed on the motel room.",
+    "source": "https://gta6intel.com/missions/overnight-charges",
+    "updated_at": "2026-11-19T10:35:38.168092Z"
+  },
+  {
+    "id": "painkiller-supplier",
+    "name": "Painkiller Supplier",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Dunk calls with a lead on painkillers for Jason.",
+    "source": "https://gta6intel.com/missions/painkiller-supplier",
+    "updated_at": "2026-11-19T10:35:39.624691Z"
+  },
+  {
+    "id": "party-hard",
+    "name": "Party Hard",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Jason and Lucia work personal security for a celebrity.",
+    "source": "https://gta6intel.com/missions/party-hard",
+    "updated_at": "2026-11-19T10:34:23.512372Z"
+  },
+  {
+    "id": "pay-abes-fee",
+    "name": "Pay Abe's Fee",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Pay the lawyer's fee.",
+    "source": "https://gta6intel.com/missions/pay-abes-fee",
+    "updated_at": "2026-11-19T10:35:41.039219Z"
+  },
+  {
+    "id": "photoshoot",
+    "name": "Photo/Shoot",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Jason, Lucia and Dre'Quan shoot a promo.",
+    "source": "https://gta6intel.com/missions/photoshoot",
+    "updated_at": "2026-11-19T10:34:26.235642Z"
+  },
+  {
+    "id": "pick-up-a-gun",
+    "name": "Pick Up a Gun",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "An optional stop for Lucia to buy or collect a weapon.",
+    "source": "https://gta6intel.com/missions/pick-up-a-gun",
+    "updated_at": "2026-11-19T10:35:09.003388Z"
+  },
+  {
+    "id": "pick-up-groceries",
+    "name": "Pick Up Groceries",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "An optional errand: stock the house before Lucia arrives.",
+    "source": "https://gta6intel.com/missions/pick-up-groceries",
+    "updated_at": "2026-11-19T10:36:18.062966Z"
+  },
+  {
+    "id": "pipework",
+    "name": "Pipework",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Jason calls on Mandy, one of Brian's tenants, to collect her rent and ends up fixing things around her house first.",
+    "source": "https://gta6intel.com/missions/pipework",
+    "updated_at": "2026-11-19T10:33:01.718478Z"
+  },
+  {
+    "id": "pool-day",
+    "name": "Pool Day",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "A Chapter 4 day at the pool.",
+    "source": "https://gta6intel.com/missions/pool-day",
+    "updated_at": "2026-11-19T10:35:42.474072Z"
+  },
+  {
+    "id": "power-play",
+    "name": "Power Play",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "A crew job that involves gathering intel.",
+    "source": "https://gta6intel.com/missions/power-play",
+    "updated_at": "2026-11-19T10:34:40.190055Z"
+  },
+  {
+    "id": "prepare-for-vice-city",
+    "name": "Prepare for Vice City",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Save up enough money and wrap up Chapter 2 before the move to Vice City.",
+    "source": "https://gta6intel.com/missions/prepare-for-vice-city",
+    "updated_at": "2026-11-19T10:35:43.891966Z"
+  },
+  {
+    "id": "prologue",
+    "name": "Prologue",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "The opening mission of GTA 6: Lucia, locked up in the Leonida Penitentiary, sits down with a prison counsellor to talk about how she got there and her chances of early release.",
+    "source": "https://gta6intel.com/missions/prologue",
+    "updated_at": "2026-11-19T10:32:56.240971Z"
+  },
+  {
+    "id": "protective-custody",
+    "name": "Protective Custody",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Jason and Lucia work together on a meeting with their lawyer.",
+    "source": "https://gta6intel.com/missions/protective-custody",
+    "updated_at": "2026-11-19T10:35:03.019834Z"
+  },
+  {
+    "id": "race-against-yago",
+    "name": "Race Against Yago",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "An optional, missable race against Yago.",
+    "source": "https://gta6intel.com/missions/race-against-yago",
+    "updated_at": "2026-11-19T10:36:19.641522Z"
+  },
+  {
+    "id": "rafa",
+    "name": "Rafa",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "A Chapter 4 mission for Jason.",
+    "source": "https://gta6intel.com/missions/rafa",
+    "updated_at": "2026-11-19T10:35:45.430347Z"
+  },
+  {
+    "id": "rauls-next-job",
+    "name": "Raul's Next Job",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Raul gets in touch about his next job.",
+    "source": "https://gta6intel.com/missions/rauls-next-job",
+    "updated_at": "2026-11-19T10:36:21.062441Z"
+  },
+  {
+    "id": "recalibration",
+    "name": "Recalibration",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Cal is having a rough time, so Jason and Lucia try to lift his spirits.",
+    "source": "https://gta6intel.com/missions/recalibration",
+    "updated_at": "2026-11-19T10:33:15.361630Z"
+  },
+  {
+    "id": "ride-or-die",
+    "name": "Ride or Die",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Jason helps Dre'Quan out.",
+    "source": "https://gta6intel.com/missions/ride-or-die",
+    "updated_at": "2026-11-19T10:34:04.941945Z"
+  },
+  {
+    "id": "safe-word",
+    "name": "Safe Word",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Lucia steals a safe to practise on and picks up a new skill.",
+    "source": "https://gta6intel.com/missions/safe-word",
+    "updated_at": "2026-11-19T10:34:09.381302Z"
+  },
+  {
+    "id": "save-for-the-future",
+    "name": "Save for the Future",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "A Chapter 1 task: keep adding to the family savings to reach the next goal.",
+    "source": "https://gta6intel.com/missions/save-for-the-future",
+    "updated_at": "2026-11-19T10:35:46.842919Z"
+  },
+  {
+    "id": "security-expert",
+    "name": "Security Expert",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Jason and Lucia meet a security expert who could help with the heist.",
+    "source": "https://gta6intel.com/missions/security-expert",
+    "updated_at": "2026-11-19T10:34:03.495164Z"
+  },
+  {
+    "id": "send-money-to-lorena",
+    "name": "Send Money to Lorena",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "A Chapter 3 task: send some money to Lorena.",
+    "source": "https://gta6intel.com/missions/send-money-to-lorena",
+    "updated_at": "2026-11-19T10:35:48.283193Z"
+  },
+  {
+    "id": "send-more-money-to-lorena",
+    "name": "Send More Money to Lorena",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "A second payment to Lorena.",
+    "source": "https://gta6intel.com/missions/send-more-money-to-lorena",
+    "updated_at": "2026-11-19T10:35:10.570731Z"
+  },
+  {
+    "id": "sinfrontera-national-bank",
+    "name": "Sinfrontera National Bank",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Jason and Lucia scope out a bank as planning for a big job begins.",
+    "source": "https://gta6intel.com/missions/sinfrontera-national-bank",
+    "updated_at": "2026-11-19T10:34:01.935427Z"
+  },
+  {
+    "id": "slam-dunk",
+    "name": "Slam Dunk",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Lucia visits Dunk's trailer to hear how he plans to get stronger painkillers for Jason.",
+    "source": "https://gta6intel.com/missions/slam-dunk",
+    "updated_at": "2026-11-19T10:33:30.527179Z"
+  },
+  {
+    "id": "south-leonida-real-estate",
+    "name": "South Leonida Real Estate",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Lucia meets up with her mother again and runs into trouble with a local gang.",
+    "source": "https://gta6intel.com/missions/south-leonida-real-estate",
+    "updated_at": "2026-11-19T10:33:45.340905Z"
+  },
+  {
+    "id": "starting-from-zero",
+    "name": "Starting From Zero",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "The last mission of Chapter 4.",
+    "source": "https://gta6intel.com/missions/starting-from-zero",
+    "updated_at": "2026-11-19T10:34:53.339512Z"
+  },
+  {
+    "id": "steal-the-scooter",
+    "name": "Steal the Scooter",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "A second optional favour for Shirley. Missable.",
+    "source": "https://gta6intel.com/missions/steal-the-scooter",
+    "updated_at": "2026-11-19T10:35:49.816608Z"
+  },
+  {
+    "id": "steal-the-zorrusso-for-randy",
+    "name": "Steal the Zorrusso for Randy",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Jason and Lucia steal a high-end Zorrusso for Randy.",
+    "source": "https://gta6intel.com/missions/steal-the-zorrusso-for-randy",
+    "updated_at": "2026-11-19T10:34:00.486558Z"
+  },
+  {
+    "id": "sunset",
+    "name": "Sunset",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Jason and Lucia go looking for answers.",
+    "source": "https://gta6intel.com/missions/sunset",
+    "updated_at": "2026-11-19T10:34:51.936066Z"
+  },
+  {
+    "id": "swamped",
+    "name": "Swamped",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Brian takes Jason out to sit down with the Kingfishers.",
+    "source": "https://gta6intel.com/missions/swamped",
+    "updated_at": "2026-11-19T10:33:12.481376Z"
+  },
+  {
+    "id": "take-care-of-jason",
+    "name": "Take Care of Jason",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "A Chapter 2 task: keep checking on Jason at the motel while he recovers.",
+    "source": "https://gta6intel.com/missions/take-care-of-jason",
+    "updated_at": "2026-11-19T10:35:51.270401Z"
+  },
+  {
+    "id": "taking-liberties",
+    "name": "Taking Liberties",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "A new plan comes together.",
+    "source": "https://gta6intel.com/missions/taking-liberties",
+    "updated_at": "2026-11-19T10:34:56.162641Z"
+  },
+  {
+    "id": "team-building",
+    "name": "Team Building",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Lucia meets a new crew and has to prove herself.",
+    "source": "https://gta6intel.com/missions/team-building",
+    "updated_at": "2026-11-19T10:34:47.624033Z"
+  },
+  {
+    "id": "thats-where-the-money-is",
+    "name": "That's Where the Money Is\u2026",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "An optional wait at a caf\u00e9 for someone to turn up.",
+    "source": "https://gta6intel.com/missions/thats-where-the-money-is",
+    "updated_at": "2026-11-19T10:35:52.797891Z"
+  },
+  {
+    "id": "the-cartel-heist",
+    "name": "The Cartel Heist",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "The last mission of Chapter 3: the plan is set and it's time to hit the bank.",
+    "source": "https://gta6intel.com/missions/the-cartel-heist",
+    "updated_at": "2026-11-19T10:34:16.142916Z"
+  },
+  {
+    "id": "the-end-of-the-road",
+    "name": "The End of the Road",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "The final mission of the GTA 6 story.",
+    "source": "https://gta6intel.com/missions/the-end-of-the-road",
+    "updated_at": "2026-11-19T10:35:04.449854Z"
+  },
+  {
+    "id": "the-missing-link",
+    "name": "The Missing Link",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Lucia follows a lead that takes her to a cockfight.",
+    "source": "https://gta6intel.com/missions/the-missing-link",
+    "updated_at": "2026-11-19T10:34:07.932786Z"
+  },
+  {
+    "id": "this-is-a-free-call-from",
+    "name": "This Is a Free Call From\u2026",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "An optional, missable phone call for Lucia.",
+    "source": "https://gta6intel.com/missions/this-is-a-free-call-from",
+    "updated_at": "2026-11-19T10:35:54.226580Z"
+  },
+  {
+    "id": "tie-up-loose-ends",
+    "name": "Tie Up Loose Ends",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Loose ends to tie up after the heist.",
+    "source": "https://gta6intel.com/missions/tie-up-loose-ends",
+    "updated_at": "2026-11-19T10:35:55.638741Z"
+  },
+  {
+    "id": "too-much-baggage",
+    "name": "Too Much Baggage",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Jason scopes out the airport and does some baggage handling.",
+    "source": "https://gta6intel.com/missions/too-much-baggage",
+    "updated_at": "2026-11-19T10:34:35.948291Z"
+  },
+  {
+    "id": "top-billing",
+    "name": "Top Billing",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Jason, Lucia and Dre'Quan go to see the Real Dimez play live.",
+    "source": "https://gta6intel.com/missions/top-billing",
+    "updated_at": "2026-11-19T10:33:51.420572Z"
+  },
+  {
+    "id": "tourist-trap",
+    "name": "Tourist Trap",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Mattia offers Jason and Lucia a simple job that could lead to better-paid work.",
+    "source": "https://gta6intel.com/missions/tourist-trap",
+    "updated_at": "2026-11-19T10:33:16.767994Z"
+  },
+  {
+    "id": "tyrone",
+    "name": "Tyrone",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Jason goes to see Tyrone about some work.",
+    "source": "https://gta6intel.com/missions/tyrone",
+    "updated_at": "2026-11-19T10:33:46.914333Z"
+  },
+  {
+    "id": "unfinished-business",
+    "name": "Unfinished Business",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Unfinished business to take care of in Chapter 5.",
+    "source": "https://gta6intel.com/missions/unfinished-business",
+    "updated_at": "2026-11-19T10:35:57.188244Z"
+  },
+  {
+    "id": "unwanted-attention",
+    "name": "Unwanted Attention",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Cal takes Jason to Hamlet to get back money owed to Brian, hidden in a car sitting in the police impound.",
+    "source": "https://gta6intel.com/missions/unwanted-attention",
+    "updated_at": "2026-11-19T10:35:58.622265Z"
+  },
+  {
+    "id": "vc-baby",
+    "name": "VC Baby",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Mattia gets in touch and asks for help.",
+    "source": "https://gta6intel.com/missions/vc-baby",
+    "updated_at": "2026-11-19T10:34:57.772999Z"
+  },
+  {
+    "id": "vcia-takedown",
+    "name": "VCIA Takedown",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "The airport heist goes ahead.",
+    "source": "https://gta6intel.com/missions/vcia-takedown",
+    "updated_at": "2026-11-19T10:34:50.597846Z"
+  },
+  {
+    "id": "watch-it",
+    "name": "Watch It",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Jason and Dre'Quan meet a club owner.",
+    "source": "https://gta6intel.com/missions/watch-it",
+    "updated_at": "2026-11-19T10:34:29.721392Z"
+  },
+  {
+    "id": "welcome-to-vice-city",
+    "name": "Welcome to Vice City",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Chapter 3 begins with Jason and Lucia arriving in Vice City and looking up Jason's old friend Dre'Quan.",
+    "source": "https://gta6intel.com/missions/welcome-to-vice-city",
+    "updated_at": "2026-11-19T10:33:37.895719Z"
+  },
+  {
+    "id": "whats-in-the-bag",
+    "name": "What's in the Bag?",
+    "kind": null,
+    "reward": null,
+    "prereq": [],
+    "notes": "Chapter 2 opens with Jason and Lucia in a Port Gellhorn motel, finally checking what's inside the bag.",
+    "source": "https://gta6intel.com/missions/whats-in-the-bag",
+    "updated_at": "2026-11-19T10:33:21.075970Z"
+  }
+]

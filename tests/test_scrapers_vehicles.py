@@ -78,6 +78,35 @@ def test_parse_facts_excludes_pill_text() -> None:
     assert all("Returning" not in v for v in facts.values())
 
 
+def test_parse_price_defensive_formats() -> None:
+    """Only digit-bearing Price facts become ints; prose stays None."""
+    from gta6data.scrapers.vehicles_intel import parse_price
+
+    assert parse_price("$1,250,000") == 1250000
+    assert parse_price("1,250,000") == 1250000
+    assert parse_price("1250000") == 1250000
+    assert parse_price("Not purchasable") is None
+    assert parse_price("TBA") is None
+
+
+def test_parse_detail_without_price_fact_keeps_price_none() -> None:
+    vehicle = parse_detail(DETAIL_HTML)
+    assert vehicle is not None
+    assert vehicle.price is None  # blimp fixture carries no Price fact
+
+
+def test_parse_detail_maps_price_fact_when_present() -> None:
+    detail_with_price = DETAIL_HTML.replace(
+        '<div class="fact">',
+        '<div class="fact"><dt>Price</dt><dd>$1,250,000</dd></div>'
+        '<div class="fact">',
+        1,
+    )
+    vehicle = parse_detail(detail_with_price)
+    assert vehicle is not None
+    assert vehicle.price == 1250000
+
+
 def test_parse_abc_contract_returns_list() -> None:
     scraper = VehiclesIntelScraper()
     result = scraper.parse(DETAIL_HTML)

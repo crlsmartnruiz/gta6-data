@@ -28,8 +28,8 @@ Interactive docs: [`https://gta6data.xyz/docs`](https://gta6data.xyz/docs) (Open
 |---|---|---|
 | `vehicles` | 321 | Vehicles seen in trailers/gameplay |
 | `locations` | 108 | Cities, landmarks and other map locations |
-| `missions` | 0 | Populates during launch week |
-| `prices` | 0 | Populates during launch week |
+| `missions` | 137 | Full mission catalog (gta6intel.com); rewards/kinds fill in during launch week |
+| `prices` | 0 | No source publishes in-game prices yet (launch week datamining) |
 
 ## Quickstart
 

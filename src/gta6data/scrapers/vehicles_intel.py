@@ -7,7 +7,8 @@ Source structure (probed Nov 2026):
   (?page=N) while more pages remain.
 - Detail https://gta6intel.com/vehicles/<slug>: HTML with an ld+json @graph
   containing a `Thing` node (name/description/url) plus a facts `<dl>`
-  ("Class" -> vehicle_class, "Manufacturer" -> manufacturer when known).
+  ("Class" -> vehicle_class, "Manufacturer" -> manufacturer when known,
+  "Price" -> price when the vehicle is purchasable).
   The Class dd may embed a `fact-pill` span ("Returning" / "New in GTA 6")
   that is stripped from the class value.
 
@@ -97,6 +98,16 @@ def parse_facts(raw: str) -> dict[str, str]:
     return facts
 
 
+def parse_price(fact_value: str) -> int | None:
+    """Parse a Price fact into an integer (None when not a purchasable amount).
+
+    Defensive: launch-week facts may read "$1,250,000", "1,250,000" or plain
+    prose like "Not purchasable" — only digit-bearing values become ints.
+    """
+    digits = re.sub(r"[^\d]", "", fact_value)
+    return int(digits) if digits else None
+
+
 def parse_detail(raw: str) -> Vehicle | None:
     """Parse a vehicle detail page into a Vehicle (None when no Thing node)."""
     thing = next(
@@ -113,6 +124,7 @@ def parse_detail(raw: str) -> Vehicle | None:
         name=thing.get("name", slug),
         manufacturer=facts.get("Manufacturer"),
         vehicle_class=facts.get("Class"),
+        price=parse_price(facts["Price"]) if "Price" in facts else None,
         notes=thing.get("description"),
         source=url,
     )

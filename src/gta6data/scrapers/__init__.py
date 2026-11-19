@@ -65,25 +65,19 @@ class Scraper(ABC):
 # vehicles_intel.py / locations_intel.py.
 
 
-class MissionsStubScraper(Scraper):
-    name = "missions-stub"
-    dataset = "missions"
-    source_url = None  # TODO(launch week): game unlocks Nov 19; missions pages empty pre-launch
-
-    def parse(self, raw: str) -> list[Mission]:
-        return []  # TODO(launch week)
-
+# missions-stub retired: real scraper (gta6intel.com) lives in missions_intel.py.
 
 # Imported last (but before REGISTRY): the real scrapers do
 # `from . import Scraper`, which requires the base class to exist when their
 # module initializes (avoids a cycle).
 from .locations_intel import LocationsIntelScraper  # noqa: E402
+from .missions_intel import MissionsIntelScraper  # noqa: E402
 from .vehicles_intel import VehiclesIntelScraper  # noqa: E402
 
 REGISTRY: dict[str, type[Scraper]] = {
     s.name: s for s in (
         VehiclesIntelScraper,
         LocationsIntelScraper,
-        MissionsStubScraper,
+        MissionsIntelScraper,
     )
 }
