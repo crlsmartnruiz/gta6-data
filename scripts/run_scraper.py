@@ -52,9 +52,17 @@ def main() -> int:
                 except (RuntimeError, ValueError) as exc:
                     logging.error("%s failed: %s", name, exc)
                     failed.append(name)
+            # Export ONLY datasets touched by scrapers that actually ran in
+            # this invocation. Exporting every dataset here (the old
+            # behavior) let per-scraper CI runs (`--name X`) clobber the
+            # other datasets' JSON files with empty arrays, silently wiping
+            # e.g. locations.json on every data-refresh — a failed scraper
+            # never reaches this loop, so its dataset file keeps its
+            # previous content instead of being wiped.
             data_dir = Path("data")
             data_dir.mkdir(parents=True, exist_ok=True)
-            for dataset in db.DATASETS:
+            touched = {REGISTRY[n].dataset for n in names if n not in failed}
+            for dataset in sorted(touched):
                 out = data_dir / f"{dataset}.json"
                 count = db.export_json(conn, dataset, out)
                 print(f"{dataset}: exported {count} records -> {out}")
