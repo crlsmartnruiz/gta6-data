@@ -8,7 +8,7 @@
 {{ gta6_domain }} {
     root * /opt/gta6-data/web
 
-    @api path /api/* /docs /docs/* /openapi.json
+    @api path /api/* /health /docs /docs/* /openapi.json
     handle @api {
         reverse_proxy 127.0.0.1:8000
     }
@@ -37,7 +37,7 @@
 :80 {
     root * /opt/gta6-data/web
 
-    @api path /api/* /docs /docs/* /openapi.json
+    @api path /api/* /health /docs /docs/* /openapi.json
     handle @api {
         reverse_proxy 127.0.0.1:8000
     }

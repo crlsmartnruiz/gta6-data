@@ -1,10 +1,12 @@
 /* gta6-data SPA — hash routing, relative API paths, no dependencies. */
 
-const VIEWS = ["vehicles", "locations", "prices", "missions"];
+const VIEWS = ["vehicles", "locations", "missions", "prices"];
 
 const state = {
   vehicles: [],
   locations: [],
+  missions: [],
+  prices: [],
   loaded: false,
   error: null,
   query: "",
@@ -28,16 +30,14 @@ function currentView() {
 async function loadData() {
   state.error = null;
   try {
-    const [vehicles, locations] = await Promise.all([
-      "/api/v1/vehicles",
-      "/api/v1/locations",
-    ].map(async (path) => {
-      const res = await fetch(`${path}?limit=5000`);
-      if (!res.ok) throw new Error(`${path} -> HTTP ${res.status}`);
+    // Fetch EVERY view dataset so nav counts and rows are never stale —
+    // a dataset added to VIEWS loads automatically with the rest.
+    const payloads = await Promise.all(VIEWS.map(async (ds) => {
+      const res = await fetch(`/api/v1/${ds}?limit=5000`);
+      if (!res.ok) throw new Error(`/api/v1/${ds} -> HTTP ${res.status}`);
       return res.json();
     }));
-    state.vehicles = vehicles.records || [];
-    state.locations = locations.records || [];
+    VIEWS.forEach((ds, i) => { state[ds] = payloads[i].records || []; });
   } catch (err) {
     state.error = err.message;
   }
@@ -47,11 +47,9 @@ async function loadData() {
 
 function setCounts() {
   document.querySelectorAll("[data-count]").forEach((el) => {
-    const ds = el.dataset.count;
-    const n = ds === "vehicles" ? state.vehicles.length
-      : ds === "locations" ? state.locations.length
-      : 0;
-    el.textContent = String(n);
+    // Generic: any dataset present in state gets its live count. The old
+    // per-dataset if/chain left every new dataset's badge stuck at 0.
+    el.textContent = String((state[el.dataset.count] || []).length);
   });
 }
 
@@ -124,14 +122,47 @@ function locationRows() {
       : `<div class="empty"><p class="figure">0</p><p class="label">No matches</p></div>`}`;
 }
 
+function missionRows() {
+  const q = state.query.trim().toLowerCase();
+  const rows = state.missions.filter((m) => !q || m.name.toLowerCase().includes(q));
+  const list = rows.map((m) => {
+    const meta = [m.kind || "Mission", m.reward].filter(Boolean).join(" · ");
+    return `
+    <button type="button" class="row${state.open === m.id ? " open" : ""}" data-id="${esc(m.id)}" aria-expanded="${state.open === m.id}">
+      <span class="row-name">${esc(m.name)}</span>
+      <span class="row-kind"><span class="dot" aria-hidden="true"></span>${esc(meta)}</span>
+      ${detailHTML(m)}
+    </button>`;}).join("");
+  const shown = rows.length === state.missions.length && !q
+    ? `${rows.length}`
+    : `${rows.length} / ${state.missions.length}`;
+  return `
+    <div class="toolbar">
+      <input id="q" type="search" placeholder="Search mission" value="${esc(state.query)}" autocomplete="off">
+      <span class="total">${shown}</span>
+    </div>
+    ${rows.length
+      ? `<div class="list">${list}</div>`
+      : `<div class="empty"><p class="figure">0</p><p class="label">No matches</p></div>`}`;
+}
+
 function comingSoon(dataset) {
   return `
     <div class="empty">
       <p class="figure">0</p>
       <p class="label">${esc(dataset)}</p>
-      <p>Records land when launch-week datamining starts.</p>
+      <p>No records yet — they land as community sources publish them.</p>
     </div>`;
 }
+
+// Renderers per dataset. A dataset with real rows MUST appear here;
+// test_frontend_parity.py enforces it. prices keeps the coming-soon
+// placeholder until a source publishes in-game prices.
+const ROW_RENDERERS = {
+  vehicles: vehicleRows,
+  locations: locationRows,
+  missions: missionRows,
+};
 
 function render() {
   setCounts();
@@ -155,9 +186,8 @@ function render() {
     $app.innerHTML = `<div class="empty"><p class="label">Loading…</p></div>`;
     return;
   }
-  if (view === "vehicles") $app.innerHTML = vehicleRows();
-  else if (view === "locations") $app.innerHTML = locationRows();
-  else $app.innerHTML = comingSoon(view);
+  const renderer = ROW_RENDERERS[view];
+  $app.innerHTML = renderer ? renderer() : comingSoon(view);
 
   const input = document.getElementById("q");
   if (input) {
